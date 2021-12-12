@@ -26,3 +26,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
+
+COPY . /var/www/html/Maltego-task
+RUN cd /var/www/html/Maltego-task && composer install && php artisan key:generate
