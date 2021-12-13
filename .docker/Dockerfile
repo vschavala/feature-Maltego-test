@@ -28,4 +28,6 @@ RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
 
 COPY . /var/www/html/Maltego-task
-RUN cd /var/www/html/Maltego-task && composer install && php artisan key:generate
+RUN cd /var/www/html/Maltego-task && composer install && composer require laravel/ui && php artisan key:generate && php artisan migrate && php artisan ui bootstrap --auth
+
+RUN cd /var/www/html/Maltego-task && npm install && npm run dev
